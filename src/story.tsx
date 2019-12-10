@@ -2,12 +2,11 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 
 import useBreakpoint from './useBreakpoint'
-import readme from './readme.raw.md'
 
 import './story.css'
 
 const opts = {
-    notes: { markdown: readme }
+    notes: { markdown: "" }
 }
 
 storiesOf('Hooks|useBreakpoint', module).add(

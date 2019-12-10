@@ -1,18 +1,17 @@
 {
-  "name": "@w11r/use-breakpoint",
-  "version": "1.1.0",
+  "name": "@devmetal/use-breakpoint",
+  "version": "1.0.0",
   "description": "React useBreakpoint hook to have different values for a variable based on a breakpoints.",
   "main": "dist/index.js",
   "scripts": {
-    "start": "mhy sb-start",
-    "test": "mhy jest && mhy tsc",
-    "build": "mhy sb-build && mhy bb --mhy-prod",
-    "config": "mhy config typescript -io && mhy config webpack eslint prettier -io",
-    "release": "npm run test && npm run build && git add -A && mhy sv && conventional-github-releaser -t"
+    "start": "",
+    "test": "jest",
+    "build": "tsc",
+    "release": ""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wintercounter/use-breakpoint.git"
+    "url": "git+https://github.com/devmetal/use-breakpoint.git"
   },
   "keywords": [
     "react",
@@ -24,24 +23,16 @@
   ],
   "author": "Victor Vincent <wintercounter@gmail.com> (http://wintercounter.me)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/wintercounter/use-breakpoint/issues"
-  },
-  "homepage": "https://github.com/wintercounter/use-breakpoint#readme",
-  "mhy": {
-    "storybook": {
-      "root": {
-        "build": {
-          "output-dir": "docs"
-        }
-      }
-    }
-  },
   "devDependencies": {
-    "conventional-github-releaser": "^3.1.3"
-  },
-  "mhyDependencies": {
+    "@storybook/react": "^5.1.11",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.16",
+    "@types/react": "^16.9.16",
+    "@types/react-dom": "^16.9.4",
+    "conventional-github-releaser": "^3.1.3",
+    "jest": "^24.9.0",
     "react": "^16.9.0",
-    "@storybook/react": "^5.1.11"
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
   }
 }
