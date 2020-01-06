@@ -64,25 +64,21 @@ const calculateProplessValue = (iw: number): { [key: string]: boolean } => {
     }, proplessValue);
 };
 
-type TCalcDefResult = { [key: string]: boolean };
-
-type FCalculateValue$1 = () => TCalcDefResult;
-type FCalculateValue$2 = <T>(dv: T) => T;
-type FCalculateValue$3 = <T>(dv: T, bv: Array<[string, T]>) => T;
-
-type FCalculateValue =
-  | FCalculateValue$1
-  | FCalculateValue$2
-  | FCalculateValue$3;
-
-export const calculateValue: FCalculateValue = function<T>(
-  defaultValue?: T,
+function calculateValue(
+  defaultValue: undefined,
+  breakpointValues: undefined
+): { [key: string]: boolean };
+function calculateValue<T>(
+  defaultValue: T,
   breakpointValues?: Array<[string, T]>
-) {
+): T;
+function calculateValue(defaultValue, breakpointValues): any {
+  const iw = window.innerWidth;
+
   const hasBreakpointValues: boolean =
     Array.isArray(breakpointValues) && breakpointValues.length > 0;
+
   const hasDefaultValue: boolean = defaultValue !== undefined;
-  const iw = window.innerWidth;
 
   if (!hasDefaultValue && !hasBreakpointValues) {
     return calculateProplessValue(iw);
@@ -103,16 +99,20 @@ export const calculateValue: FCalculateValue = function<T>(
   }
 
   return defaultValue;
-};
+}
 
-export const useBreakpoint = function<T>(defaultValue?: T, breakpointValues?: Array<[string, T]>) {
+export const useBreakpoint = function<T>(
+  defaultValue?: T,
+  breakpointValues?: Array<[string, T]>
+) {
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   useResize(() => setInnerWidth(window.innerWidth));
-  
-  return useMemo<TCalcDefResult | T>(
-    (): TCalcDefResult | T => calculateValue(defaultValue, breakpointValues),
-    [innerWidth, defaultValue]
-  );
+
+  return useMemo(() => calculateValue(defaultValue, breakpointValues), [
+    innerWidth,
+    defaultValue,
+    breakpointValues,
+  ]);
 };
 
 export const setup = function(opts: IOptions) {
